@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+change_file_name() {
+    local file_name
+    local base_name
+    local default_filename
+    local original_extension
+
+    file_name="${1-}"
+    if [[ -z "$file_name" ]]; then
+        read -r -p "Enter the file to change the name: " file_name
+        # Exit if no filename is provided at all.
+        if [[ -z "$file_name" ]]; then
+            echo "Error: No file name provided." >&2
+            exit 1
+        fi
+    fi
+
+    base_name="${file_name}"
+    original_extension=".${file_name##*.}"
+    default_filename="${base_name}_modified${original_extension}"
+
+    read -r -p "Enter the name for the new file (default: ${default_filename}): " new_filename
+
+    new_filename=${new_filename:-"$default_filename"}
+
+    if [[ -n "$original_extension" && ! ("$new_filename" == *.* && "$new_filename" != .*) ]]; then
+        new_filename="${new_filename}${original_extension}"
+    fi
+
+    echo "$new_filename"
+}
+
+main() {
+    change_file_name "$@"
+}
+
+# Call the main function with the provided arguments.
+main "${@:1}"
