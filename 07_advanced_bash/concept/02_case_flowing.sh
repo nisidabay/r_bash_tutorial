@@ -33,7 +33,6 @@ case $drink in
         # `;&` means FALL THROUGH to the next block (`*_latte`) without testing its pattern.
         # Execution will continue at `echo -n "Coffee "`.
         ;&
-    ;;
 
     # Pattern 2: Does it end with "_latte"?
     # This block is executed because of the fallthrough from the previous `;&`.
@@ -42,7 +41,6 @@ case $drink in
         # `;&&` means CONTINUE TESTING. The script will now check the next pattern (`*latte`).
         # Since "iced_latte" also matches `*latte`, that block will also execute.
         ;;&
-    ;;
 
     # Pattern 3: Does it contain "latte"?
     # This block is executed because of the `;&&` above AND because the pattern matches.
@@ -50,7 +48,6 @@ case $drink in
         echo -n "with Milk "
         # `;;` is the standard terminator. The case statement stops here.
         ;;
-    ;;
 
     # Default/fallback pattern.
     *)

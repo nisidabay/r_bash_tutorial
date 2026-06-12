@@ -21,7 +21,6 @@ case $file in
         # `;&` (Fallthrough): Unconditionally jump to the next block (`ignored`).
         # The pattern "ignored" will not be tested.
         ;&
-    ;;
 
     # Pattern 2: (This pattern will never match the input `photo.jpg`)
     # This block is executed ONLY because of the fallthrough from the `;&` above.
@@ -29,7 +28,6 @@ case $file in
         echo -n "Format "
         # `;&&` (Test Next): Continue to the next pattern (`photo*`) and evaluate it.
         ;;&
-    ;;
 
     # Pattern 3: Does it start with "photo"?
     # This block is executed because the `;&&` above told the case to keep testing,
@@ -38,7 +36,6 @@ case $file in
         echo -n "named Photo "
         # `;;` (Stop): The case statement terminates here.
         ;;
-    ;;
 esac
 
 echo # Add a final newline.
