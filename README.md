@@ -3,7 +3,7 @@
 A progressive, code-first curriculum for learning Bash scripting.
 No external dependencies — just the shell and real problems.
 
-**11 groups. 70+ scripts. All Bash, all stdlib.**
+**11 groups. 81 scripts. All Bash, all stdlib.**
 
 ## Who This Is For
 
@@ -58,19 +58,6 @@ Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 | 10 | Terminal UI | 7 | Progress bars, animations, fzf integration, printf formatting, tput |
 | 11 | Algorithms & Data | 4 | ROT13, fake data, linear search, random data generation |
 
-## The Toolbox
-
-`tools/` contains **practical CLI utilities** built with these concepts —
-application launchers (rofi/wofi), macOS helpers, system installers, and more.
-Everything here was built to solve an actual problem on a Linux machine.
-
-| Directory | Scripts | What it does |
-|---|---|---|
-| `tools/rofi/` | 28 | Rofi-based launchers, note viewers, keybinding displays |
-| `tools/wofi/` | 22 | Wayland-native wofi equivalents |
-| `tools/mac/` | 10 | macOS-specific utilities (wifi, USB, venv, etc.) |
-| `tools/` (root) | 5 | Installers, TUI tools, test suites |
-
 ## Running a Script
 
 ```bash
@@ -85,7 +72,6 @@ chmod +x 01_basics/concept/01_hello_variables.sh
 ## Design Principle
 
 Each group's scripts only use concepts from that group and prior groups.
-Advanced tools that use concepts from multiple groups live in `tools/`.
 This keeps the learning path progressive — no jumping from "hello world"
 to a 200-line system administration script.
 
