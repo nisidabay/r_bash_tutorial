@@ -39,10 +39,10 @@ bash 01_hello_variables.sh      # first concept
 
 Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 `04_arrays_strings` → `05_file_io_basics` → `06_processes` →
-`07a_case_flow` → `07b_namerefs_data` → `07c_argument_parsing` →
+`07a_case_flow` → `07b_namerefs_data` → `07c_argument_parsing` → `07d_printf_deep_dive` →
 `08_file_descriptors` → `09_system_admin` → `10_terminal_ui` → `11_algorithms_data`.
 
-## The Curriculum (13 Groups)
+## The Curriculum (14 Groups)
 
 | # | Group | Concept files | What you learn |
 |---|---|---|---|
@@ -56,6 +56,7 @@ Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 | 07a | Case Flow Control | 4 | Templates, `;&`/`;&&`, multi-condition validation |
 | 07b | Namerefs & Data | 4 | `local -n`, arrays by ref, stdin-to-associative |
 | 07c | Argument Parsing | 3 | getopts standard, long options, regex INI parser |
+| 07d | Printf Deep Dive | 3 | Format specifiers, date formatting, alignment, ANSI colors |
 | 08 | File Descriptors | 10 | FD read/write, dual output, non-blocking reads, timeouts, parallel download |
 | 09 | System Admin | 9 | Desktop entries, services, select menus, stow, traps, temp files, diff |
 | 10 | Terminal UI | 7 | Progress bars, animations, fzf integration, printf formatting, tput |
