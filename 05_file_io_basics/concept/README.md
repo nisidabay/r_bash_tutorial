@@ -9,6 +9,8 @@ bash 05_file_io_basics/concept/03_redirect_basics.sh
 bash 05_file_io_basics/concept/04_pipes.sh
 bash 05_file_io_basics/concept/05_here_strings.sh
 bash 05_file_io_basics/concept/06_dev_stdin.sh
+bash 05_file_io_basics/concept/07_here_string_read.sh
+bash 05_file_io_basics/concept/08_function_redirect.sh
 ```
 
 ## Learning Path
@@ -21,6 +23,8 @@ bash 05_file_io_basics/concept/06_dev_stdin.sh
 | `04_pipes.sh` | Pipes and pipelines | `\|` chaining, `tee` in pipelines, `PIPESTATUS` array |
 | `05_here_strings.sh` | Here-strings | `<<<"str"`, feeding variables, `while read` without subshell |
 | `06_dev_stdin.sh` | /dev/stdin tricks | `${1:-/dev/stdin}`, `[[ -p /dev/stdin ]]`, file-or-stdin pattern |
+| `07_here_string_read.sh` | Multi-line string processing with `<<<` | `<<<"$content"` with `while read`, here-doc vs here-string |
+| `08_function_redirect.sh` | Function output redirection | `func() { ... } >> "$LOG_FILE" 2>&1`, wrapper logging pattern |
 
 ## Common Patterns
 

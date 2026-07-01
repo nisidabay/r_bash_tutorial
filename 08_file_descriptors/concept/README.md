@@ -7,7 +7,6 @@ bash 08_file_descriptors/concept/01_fd_read.sh
 bash 08_file_descriptors/concept/02_fd_write.sh
 bash 08_file_descriptors/concept/04_fd_nonblocking.sh
 bash 08_file_descriptors/concept/09_parallel_download.sh
-bash 08_file_descriptors/concept/13_process_substitution.sh
 ```
 
 ## Learning Path
@@ -23,10 +22,8 @@ bash 08_file_descriptors/concept/13_process_substitution.sh
 | `07_fd_timeout.sh` | Per-line timeout on stream reads | `while read -r -t 3 line <&3`, graceful loop termination on timeout |
 | `08_universal_input.sh` | Universal input: file arg or pipe | `< "${input_filename:-/dev/stdin}"`, `[[ -t 0 ]]` terminal check |
 | `09_parallel_download.sh` | Parallel download with FIFOs | `mkfifo`, `curl --range`, `dd seek=... conv=notrunc`, `wait` for PIDs |
-| `10_here_string_read.sh` | Multi-line string with here-string | `<<<"$content"`, `IFS= read -r` inside a `while` loop |
-| `11_dual_file_read.sh` | Side-by-side file reading + `diff` | Simultaneous FD read, `diff -u --color=always` |
-| `12_function_redirect.sh` | Entire function output redirection | `func() { ... } >> "$LOG_FILE" 2>&1`, wrapper logging pattern |
-| `13_process_substitution.sh` | Process substitution basics | `<(...)` as a file argument, avoids subshell |
+| `10_dual_file_read.sh` | Side-by-side file reading + `diff` | Simultaneous FD read, `diff -u --color=always` |
+| `11_function_redirect.sh` *(renumbered from 12)* | Entire function output redirection | `func() { ... } >> "$LOG_FILE" 2>&1`, wrapper logging pattern |
 
 ## Common Patterns
 

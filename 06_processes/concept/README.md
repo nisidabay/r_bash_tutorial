@@ -9,6 +9,7 @@ bash 06_processes/concept/03_background_jobs.sh
 bash 06_processes/concept/04_wait.sh
 bash 06_processes/concept/05_trap_basics.sh
 bash 06_processes/concept/06_mktemp.sh
+bash 06_processes/concept/07_process_substitution.sh
 ```
 
 ## Learning Path
@@ -21,6 +22,7 @@ bash 06_processes/concept/06_mktemp.sh
 | `04_wait.sh` | Waiting for children | `wait`, `wait $pid`, `wait -n`, parallel execution pattern |
 | `05_trap_basics.sh` | Signal handling | `trap 'cmd' EXIT`, `trap 'cmd' SIGINT`, `trap -p` |
 | `06_mktemp.sh` | Secure temp files | `mktemp`, `mktemp -d`, `mktemp -t`, `trap cleanup EXIT` |
+| `07_process_substitution.sh` | Process substitution basics | `<(...)` as a file argument, avoids subshell |
 
 ## Common Patterns
 
