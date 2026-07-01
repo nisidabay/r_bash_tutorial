@@ -3,7 +3,7 @@
 A progressive, code-first curriculum for learning Bash scripting.
 No external dependencies — just the shell and real problems.
 
-**11 groups → 13 tracks. 81 scripts. All Bash, all stdlib.**
+**14 progressive groups. 86 scripts + 28 exercises. All Bash, all stdlib.**
 
 ## Who This Is For
 
@@ -15,13 +15,13 @@ No external dependencies — just the shell and real problems.
 
 ### Path A: The Sampler (~15 min)
 
-Read the concept READMEs. Each group has a **Now Build Your Own** challenge.
-Pick one that interests you and build it:
+Read the concept READMEs. Each group has challenges to practice what you learned.
+Pick one that interests you and try it:
 
 ```bash
-cat 01_basics/concept/README.md     # → "Write a greeting script"
-cat 05_file_io_basics/concept/README.md  # → "Write a log parser"
-cat 10_terminal_ui/concept/README.md    # → "Write a progress bar"
+cat 01_basics/concept/README.md           # Modifica un script de variables
+cat 05_file_io_basics/concept/README.md   # Escribe un log parser
+cat 10_terminal_ui/concept/README.md      # Crea una barra de progreso
 ```
 
 ### Path B: Systematic (~several weeks)
@@ -42,23 +42,39 @@ Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 `07a_case_flow` → `07b_namerefs_data` → `07c_argument_parsing` → `07d_printf_deep_dive` →
 `08_file_descriptors` → `09_system_admin` → `10_terminal_ui` → `11_algorithms_data`.
 
+### Exercises
+
+Each group has exercises under `exercises/<group>/` with incomplete scripts
+to complete (`exercise_NX.sh`) and solutions to check your work. Run the
+verify script to test your solutions:
+
+```bash
+bash exercises/01_basics/verify.sh
+```
+
+Or run all groups at once:
+
+```bash
+bash exercises/verify.sh
+```
+
 ## The Curriculum (14 Groups)
 
 | # | Group | Concept files | What you learn |
 |---|---|---|---|
 | 01 | Basics | 6 | Variables, quoting, exit codes, shebangs, echo/printf, IFS |
 | 02 | Control Flow | 6 | if/elif/else, test/[[ ]], for/while/until, case, break/continue |
-| 03 | Functions | 6 | define/call, arguments, return codes, local, main() pattern, source |
+| 03 | Functions | 7 | define/call, arguments, return codes, local, main() pattern, source |
 | 04 | Arrays & Strings | 6 | Indexed/associative arrays, iteration, mapfile, parameter expansion, here-docs |
-| 05 | File I/O Basics | 6 | read, write, redirection, pipes, here-strings, /dev/stdin |
-| 06 | Processes | 6 | Command substitution, subshells, background jobs, wait, trap, mktemp |
-| 07 | Advanced Bash | *(split — see below)* | *(split — see below)* |
+| 05 | File I/O Basics | 8 | read, write, redirection, pipes, here-strings, /dev/stdin, here-string multi-line, function redirect |
+| 06 | Processes | 7 | Command substitution, subshells, background jobs, wait, trap, mktemp, process substitution |
+| 07 | Advanced Bash | *(split)* | *(split into 07a–07d)* |
 | 07a | Case Flow Control | 4 | Templates, `;&`/`;&&`, multi-condition validation |
 | 07b | Namerefs & Data | 4 | `local -n`, arrays by ref, stdin-to-associative |
 | 07c | Argument Parsing | 3 | getopts standard, long options, regex INI parser |
 | 07d | Printf Deep Dive | 3 | Format specifiers, date formatting, alignment, ANSI colors |
 | 08 | File Descriptors | 10 | FD read/write, dual output, non-blocking reads, timeouts, parallel download |
-| 09 | System Admin | 9 | Desktop entries, services, select menus, stow, traps, temp files, diff |
+| 09 | System Admin | 7 | Desktop entries, services, select menus, stow, traps, error reporting, nullglob, find |
 | 10 | Terminal UI | 7 | Progress bars, animations, fzf integration, printf formatting, tput |
 | 11 | Algorithms & Data | 7 | ROT13, fake data, linear search, random data, bubble sort, binary search, word frequency |
 
