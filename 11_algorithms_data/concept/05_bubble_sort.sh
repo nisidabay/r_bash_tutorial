@@ -16,7 +16,14 @@ bubble_sort() {
 
     for ((i = 0; i < n - 1; i++)); do
         for ((j = 0; j < n - i - 1; j++)); do
-            if [[ "${arr[j]}" > "${arr[j+1]}" ]]; then
+            # Use arithmetic comparison for numbers, string comparison for others
+            if [[ "${arr[j]}" =~ ^[0-9]+$ ]] && [[ "${arr[j+1]}" =~ ^[0-9]+$ ]]; then
+                if (( arr[j] > arr[j+1] )); then
+                    tmp="${arr[j]}"
+                    arr[j]="${arr[j+1]}"
+                    arr[j+1]="$tmp"
+                fi
+            elif [[ "${arr[j]}" > "${arr[j+1]}" ]]; then
                 # Swap
                 tmp="${arr[j]}"
                 arr[j]="${arr[j+1]}"

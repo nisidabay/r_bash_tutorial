@@ -42,7 +42,8 @@ readonly COLOR_GREEN='\033[1;32m'
 echo -e "$COLOR_GREEN"
 
 # Get the current width of the terminal.
-readonly width=$(tput cols)
+width=$(tput cols)
+readonly width
 # A character set to use for the "rain".
 readonly CHARS="0123456789"
 #readonly CHARS="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -55,13 +56,13 @@ while true; do
     line=""
     for ((i = 0; i < width; i++)); do
         # Generate a random number.
-        local rand=$((RANDOM % 10))
+        rand=$((RANDOM % 10))
 
         # Decide whether to print a character or a space.
         # This creates the sparse "rain" effect.
         if [ $rand -gt 7 ]; then
             # Pick a random character from the character set.
-            local rand_char_index=$((RANDOM % ${#CHARS}))
+            rand_char_index=$((RANDOM % ${#CHARS}))
             line+="${CHARS:rand_char_index:1}"
         else
             line+=" "

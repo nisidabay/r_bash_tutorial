@@ -36,6 +36,7 @@ echo "  Use \${var:-default} for safe defaults: ${UNDEFINED:-fallback}"
 echo ""
 echo "pipefail means: if 'false | echo hi' runs, exit code = 1 (false)"
 set +e   # temporarily disable set -e to demonstrate pipefail
+# shellcheck disable=SC2216  # intentional: demonstrating pipefail with echo
 false | echo "  This echo succeeds, but false makes the pipeline fail"
 pipeline_exit=$?
 set -e   # re-enable
@@ -47,4 +48,5 @@ echo "  Exit code of pipeline: $pipeline_exit"
 echo ""
 echo "Common strict mode combo: set -euo pipefail"
 echo "Also consider: set -E for ERR trap inheritance"
-echo "And: IFS=\$'\n\t'  to prevent word splitting on spaces"
+# shellcheck disable=SC2028  # intentional: showing escape sequences in echo
+echo "And: IFS=\$'\\n\\t'  to prevent word splitting on spaces"

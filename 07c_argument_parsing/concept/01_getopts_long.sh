@@ -126,7 +126,7 @@ main() {
     echo "DEBUG: $DEBUG"
     echo "VERBOSE: $VERBOSE"
     echo "Output File: ${OFILE:-"STDOUT"}"
-    echo "Remaining arguments: $@"
+    echo "Remaining arguments: $*"
     echo "----------------------"
 
     # A real script would do something with the options and arguments here.

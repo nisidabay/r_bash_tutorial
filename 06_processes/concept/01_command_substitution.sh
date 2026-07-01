@@ -13,8 +13,7 @@ main() {
     echo "Date: $current_date"
 
     # ── Legacy backtick syntax ───────────────────────────────
-    # Still works but harder to nest
-    local user_count
+    # shellcheck disable=SC2006  # intentional legacy syntax demo
     user_count=`who | wc -l`
     echo "Logged-in users: $user_count"
 
@@ -29,6 +28,7 @@ main() {
 
     # ── Capturing in variables ──────────────────────────────
     local files
+    # shellcheck disable=SC2012  # intentional: teaching ls usage, not find
     files=$(ls -la | wc -l)
     echo "Files in current dir: $files"
 }

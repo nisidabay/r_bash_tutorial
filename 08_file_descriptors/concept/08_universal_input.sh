@@ -27,6 +27,7 @@ IFS=$'\n\t'
 
 # --- Main Logic ---
 main() {
+    # shellcheck disable=SC2034  # intentional: variable documents the input source
     local input_source="stdin"
     local input_filename=""
 
@@ -34,6 +35,7 @@ main() {
     if [[ $# -gt 0 ]]; then
         # An argument was provided, treat it as a filename.
         input_filename="$1"
+        # shellcheck disable=SC2034  # intentional: documents input source
         input_source="file"
 
         # Validate that the file exists and is readable.

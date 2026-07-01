@@ -7,6 +7,7 @@ IFS=$'\n\t'
 
 main() {
     # ── Basic read with prompt ────────────────────────────────
+    # shellcheck disable=SC2162  # intentional: first example doesn't use -r for simplicity
     read -p "Enter your name: " name
     echo "Hello, $name!"
 

@@ -32,6 +32,7 @@ increment_variable() {
 # Example 1: Simple Loop Counter
 echo "--- Example 1: Looping Constructs ---"
 my_count=0
+# shellcheck disable=SC2034  # intentional: loop variable, used by increment_variable via nameref
 for i in {1..5}; do
     # Pass the *name* of the variable to the function.
     increment_variable my_count
@@ -52,6 +53,7 @@ recursive_function() {
     fi
 }
 
+# shellcheck disable=SC2034  # intentional: recursion counter modified via nameref
 my_level=0
 recursive_function my_level
 
@@ -109,7 +111,9 @@ update_stats() {
     ((ref_count++))
 }
 
+# shellcheck disable=SC2034  # intentional: counter modified via nameref
 my_number_count=0
+# shellcheck disable=SC2034  # intentional: loop variable
 for num in {1..5}; do
     update_stats my_number_count
 done

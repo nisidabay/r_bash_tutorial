@@ -7,6 +7,7 @@ IFS=$'\n\t'
 
 main() {
     local original_dir
+    # shellcheck disable=SC2034  # intentional: showing original_dir not affected by subshell
     original_dir=$(pwd)
 
     # ── Subshell with cd ─────────────────────────────────────
@@ -18,9 +19,11 @@ main() {
     # Variables set inside a subshell don't leak out
     local var="original"
     (
+        # shellcheck disable=SC2030  # intentional: demonstrating subshell isolation
         var="changed"
         echo "Inside subshell: var=$var"
     )
+    # shellcheck disable=SC2031  # intentional: demonstrating subshell isolation
     echo "Outside subshell: var=$var"
 
     # ── Subshell with pipe ──────────────────────────────────

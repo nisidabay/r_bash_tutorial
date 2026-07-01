@@ -55,6 +55,7 @@ greet_user
 # Bash 4.3+ feature
 update_var() {
     local -n ref=$1
+    # shellcheck disable=SC2034  # ref is used via nameref, not read directly
     ref="new value"
 }
 

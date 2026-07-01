@@ -61,6 +61,7 @@ has_access "alice" "/etc/shadow" || echo "alice cannot read /etc/shadow"
 # exit    → exits the current SHELL/SCRIPT
 demo_return_vs_exit() {
     return 42
+    # shellcheck disable=SC2317  # intentional: demonstrating unreachable code after return
     echo "This line never runs"  # Unreachable
 }
 

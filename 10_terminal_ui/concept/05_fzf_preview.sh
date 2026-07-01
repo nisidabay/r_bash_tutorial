@@ -39,9 +39,10 @@ readonly FIFO_PATH="$FIFO_UEBERZUG"
 #     echo "Error: 'tput' or 'file' command not found." >&2; exit 1;
 # fi
 
-readonly WIDTH=$(tput cols)
-readonly HEIGHT=$(tput lines)
-
+WIDTH=$(tput cols)
+readonly WIDTH
+HEIGHT=$(tput lines)
+readonly HEIGHT
 # Configuration for the fzf preview window layout.
 readonly PREVIEW_PERCENT=60
 readonly PADDING=2
@@ -79,6 +80,7 @@ main() {
     local mime
     mime=$(file --mime-type -b "$file")
 
+    # shellcheck disable=SC2221,SC2222  # intentional: listing subtypes for clarity
     case "$mime" in
     # --- Text-based Files ---
     text/* | application/json | application/javascript | application/xml | text/x-shellscript | text/markdown)

@@ -29,7 +29,7 @@ gamma"
     readarray -t nums <<< "10
 20
 30"
-    echo "readarray alias: ${nums[@]}"
+    echo "readarray alias: ${nums[*]}"
 
     rm -f "$tmpfile"
 }

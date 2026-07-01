@@ -11,6 +11,7 @@ main() {
     echo "Starting parallel jobs..."
 
     sleep 2 &
+    # shellcheck disable=SC2034  # intentional: pid1 not waited for individually, demonstrates parallel launch
     local pid1=$!
 
     sleep 1 &

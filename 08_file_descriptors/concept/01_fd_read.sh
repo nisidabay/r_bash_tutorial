@@ -19,6 +19,7 @@ IFS=$'\n\t'
 # ==============================================================================
 
 # --- Global Variables ---
+# shellcheck disable=SC2034  # template: DEBUG flag available for consumers
 declare -g DEBUG=false
 
 # --- Error Handling ---
@@ -37,6 +38,7 @@ trap 'handle_error $LINENO' ERR
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -d | --debug)
+            # shellcheck disable=SC2034  # DEBUG is intentionally assigned for external use
             DEBUG=true
             set -x # Turn on execution tracing.
             shift # Move to the next argument.

@@ -12,6 +12,7 @@ main() {
 
     # ── Chaining ─────────────────────────────────────────────
     # Multiple pipes in sequence
+    # shellcheck disable=SC2018,SC2019  # intentional: tr a-z A-Z for simplicity in demo
     printf "foo\nbar\nbaz\n" | sort | tr 'a-z' 'A-Z'
 
     # ── tee in pipelines ──────────────────────────────────────
@@ -24,7 +25,7 @@ main() {
     # ── PIPESTATUS ───────────────────────────────────────────
     # Array of exit codes from each command in the pipe
     true | false | true
-    echo "PIPESTATUS: ${PIPESTATUS[@]}"
+    echo "PIPESTATUS: ${PIPESTATUS[*]}"
 
     rm -f "$tmpfile"
 }

@@ -19,7 +19,7 @@ main() {
     echo "Port: ${config[port]}"
 
     # ── Iterating Keys ────────────────────────────────────────
-    echo "All keys: ${!config[@]}"
+    echo "All keys: ${!config[*]}"
 
     # ── Checking Existence ───────────────────────────────────
     if [[ -v config["host"] ]]; then
@@ -27,7 +27,7 @@ main() {
     fi
 
     # ── Deleting a Key ────────────────────────────────────────
-    unset config["user"]
-    echo "After unset user, keys: ${!config[@]}"
+    unset 'config["user"]'
+    echo "After unset user, keys: ${!config[*]}"
 }
 main "$@"

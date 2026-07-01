@@ -13,7 +13,9 @@ echo "Also works with ${name} — brace form for ${name}ext"
 
 # ── Single quotes: literal strings ───────────────────────────
 # '$var' treats everything literally — NOTHING is expanded
+# shellcheck disable=SC2016  # intentional: showing single quotes prevent expansion
 echo 'Single quotes: Hello, $name! (literal, no expansion)'
+# shellcheck disable=SC2016  # intentional: showing single quotes prevent expansion
 echo 'Even backticks `pwd` and $dollars are literal'
 echo 'Single quotes cannot contain single quotes — not even escaped'
 

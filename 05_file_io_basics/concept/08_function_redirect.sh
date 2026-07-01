@@ -54,7 +54,7 @@ operation2() {
 
 # Clear the log file at the start of the script for a clean run.
 # The `>` operator truncates the file if it exists or creates it if it doesn't.
-> "$LOG_FILE"
+: > "$LOG_FILE"
 
 echo "Running operations and logging output to '$LOG_FILE'."
 

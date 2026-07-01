@@ -26,6 +26,7 @@ lines="line with spaces
 second entry
 third entry"
 echo ""
+# shellcheck disable=SC2028  # intentional: showing escape sequences in echo
 echo "IFS=\$'\\n\\t': splitting on newlines (spaces preserved)"
 for entry in $lines; do
     echo "  Entry: '$entry'"

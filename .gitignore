@@ -1,0 +1,11 @@
+.hermes/
+NUEVO_FORMATO_PROPUESTA.md
+PROPUESTA_FINAL.md
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+__pycache__/
+node_modules/
+.DS_Store

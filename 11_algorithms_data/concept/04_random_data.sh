@@ -55,7 +55,8 @@ select_random_option_from_list() {
 generate_random_file_name() {
     echo "--- Random File Name Generation ---"
     # `date +%s` provides the current Unix timestamp for uniqueness.
-    local file_name="data_$(date +%s)_$RANDOM.txt"
+    local file_name
+    file_name="data_$(date +%s)_$RANDOM.txt"
     echo "Generated file name: $file_name"
 }
 

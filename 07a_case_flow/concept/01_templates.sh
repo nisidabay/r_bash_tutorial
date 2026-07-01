@@ -20,7 +20,11 @@ IFS=$'\n\t'
 
 # 2. Read-only Constants
 readonly SCRIPT_NAME="${0##*/}"
-readonly SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+# shellcheck disable=SC2034  # template: SCRIPT_DIR used for path resolution
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+# shellcheck disable=SC2034  # template: SCRIPT_DIR used for path resolution
+readonly SCRIPT_DIR
+# shellcheck disable=SC2034  # template: VERSION available for consumers
 readonly VERSION="1.0.1"
 
 # 3. Logging Levels

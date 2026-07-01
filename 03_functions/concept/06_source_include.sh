@@ -16,6 +16,7 @@ echo "Script directory: $SCRIPT_DIR"
 # This makes all functions/variables from the sourced file available
 echo ""
 echo "Sourcing lib_helpers.sh..."
+# shellcheck disable=SC1091  # intentional: sourced file not provided as shellcheck input
 source "${SCRIPT_DIR}/lib_helpers.sh"
 
 # Now we can use functions defined in the library
@@ -26,6 +27,7 @@ log_info "Using library: $LIB_NAME v$LIB_VERSION"
 # . is a synonym for source (POSIX-compatible)
 echo ""
 echo "Using dot-syntax (. file):"
+# shellcheck disable=SC1091  # intentional: sourced file not provided as shellcheck input
 . "${SCRIPT_DIR}/lib_helpers.sh"
 log_info "This also works!"
 

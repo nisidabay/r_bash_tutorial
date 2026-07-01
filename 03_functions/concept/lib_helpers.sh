@@ -7,7 +7,8 @@
 # No set -euo pipefail here — it inherits the caller's settings.
 
 # Determine script directory for relative path resolution
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC2034  # used by source consumers
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # ── Utility functions ────────────────────────────────────────
 log_info() {
@@ -23,7 +24,9 @@ bold() {
 }
 
 # ── Version info ─────────────────────────────────────────────
+# shellcheck disable=SC2034  # exported for source consumers
 LIB_VERSION="1.0.0"
+# shellcheck disable=SC2034  # exported for source consumers
 LIB_NAME="helpers"
 
 # Only run if executed directly (not sourced)

@@ -39,7 +39,11 @@ is_sorted() {
     local -a arr=("$@")
     local i
     for ((i = 0; i < ${#arr[@]} - 1; i++)); do
-        if [[ "${arr[i]}" > "${arr[i+1]}" ]]; then
+        if [[ "${arr[i]}" =~ ^[0-9]+$ ]] && [[ "${arr[i+1]}" =~ ^[0-9]+$ ]]; then
+            if (( arr[i] > arr[i+1] )); then
+                return 1
+            fi
+        elif [[ "${arr[i]}" > "${arr[i+1]}" ]]; then
             return 1
         fi
     done

@@ -21,6 +21,7 @@ greet() {
     echo "Hello, $name!"
 }
 
+# shellcheck disable=SC2120  # intentional: print_env called without args for demo
 print_env() {
     echo "Script:    $0"
     echo "BASH_SOURCE: ${BASH_SOURCE[0]}"
@@ -41,6 +42,7 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
     # Script is being EXECUTED — run main
     main() {
         echo "=== main() pattern demo ==="
+        # shellcheck disable=SC2119  # intentional: no args, uses default behavior
         print_env
         echo ""
         greet "${1:-}"
