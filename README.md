@@ -3,7 +3,7 @@
 A progressive, code-first curriculum for learning Bash scripting.
 No external dependencies — just the shell and real problems.
 
-**11 groups. 81 scripts. All Bash, all stdlib.**
+**11 groups → 13 tracks. 81 scripts. All Bash, all stdlib.**
 
 ## Who This Is For
 
@@ -39,10 +39,10 @@ bash 01_hello_variables.sh      # first concept
 
 Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 `04_arrays_strings` → `05_file_io_basics` → `06_processes` →
-`07_advanced_bash` → `08_file_descriptors` → `09_system_admin` →
-`10_terminal_ui` → `11_algorithms_data`.
+`07a_case_flow` → `07b_namerefs_data` → `07c_argument_parsing` →
+`08_file_descriptors` → `09_system_admin` → `10_terminal_ui` → `11_algorithms_data`.
 
-## The Curriculum (11 Groups)
+## The Curriculum (13 Groups)
 
 | # | Group | Concept files | What you learn |
 |---|---|---|---|
@@ -52,8 +52,11 @@ Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 | 04 | Arrays & Strings | 6 | Indexed/associative arrays, iteration, mapfile, parameter expansion, here-docs |
 | 05 | File I/O Basics | 6 | read, write, redirection, pipes, here-strings, /dev/stdin |
 | 06 | Processes | 6 | Command substitution, subshells, background jobs, wait, trap, mktemp |
-| 07 | Advanced Bash | 11 | Namerefs, case flow control, getopts long options, templates, regex parsing |
-| 08 | File Descriptors | 13 | FD read/write, dual output, non-blocking reads, timeouts, parallel download |
+| 07 | Advanced Bash | *(split — see below)* | *(split — see below)* |
+| 07a | Case Flow Control | 4 | Templates, `;&`/`;&&`, multi-condition validation |
+| 07b | Namerefs & Data | 4 | `local -n`, arrays by ref, stdin-to-associative |
+| 07c | Argument Parsing | 3 | getopts standard, long options, regex INI parser |
+| 08 | File Descriptors | 10 | FD read/write, dual output, non-blocking reads, timeouts, parallel download |
 | 09 | System Admin | 9 | Desktop entries, services, select menus, stow, traps, temp files, diff |
 | 10 | Terminal UI | 7 | Progress bars, animations, fzf integration, printf formatting, tput |
 | 11 | Algorithms & Data | 4 | ROT13, fake data, linear search, random data generation |
