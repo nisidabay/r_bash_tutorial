@@ -7,6 +7,9 @@ bash 11_algorithms_data/concept/01_rot13.sh
 bash 11_algorithms_data/concept/02_fake_data.sh
 bash 11_algorithms_data/concept/03_linear_search.sh
 bash 11_algorithms_data/concept/04_random_data.sh
+bash 11_algorithms_data/concept/05_bubble_sort.sh
+bash 11_algorithms_data/concept/06_binary_search.sh
+bash 11_algorithms_data/concept/07_word_frequency.sh
 ```
 
 ## Learning Path
@@ -17,6 +20,9 @@ bash 11_algorithms_data/concept/04_random_data.sh
 | `02_fake_data.sh` | Fake user data generator | `/dev/urandom` + `tr -dc 'a-zA-Z'`, `$RANDOM` for age, `mapfile` from process substitution |
 | `03_linear_search.sh` | Linear search algorithm | Pass array elements as `"$@"`, iterate with `!array[@]` index, `break` on first match |
 | `04_random_data.sh` | Random data generation cookbook | `$RANDOM` range patterns, `/dev/urandom` passwords, random dates, hex colors, IPs, filenames |
+| `05_bubble_sort.sh` | Bubble sort with nameref | `local -n` for array swap, nested loops, in-place sorting, string comparison |
+| `06_binary_search.sh` | Binary search on sorted array | Divide and conquer, `((lo <= hi))` loop, logarithmic search |
+| `07_word_frequency.sh` | Word frequency counter | `declare -A freq`, tr lowercasing, sed cleanup, sort -rn |
 
 ## Common Patterns
 

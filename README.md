@@ -59,7 +59,7 @@ Then keep going: `01_basics` → `02_control_flow` → `03_functions` →
 | 08 | File Descriptors | 10 | FD read/write, dual output, non-blocking reads, timeouts, parallel download |
 | 09 | System Admin | 9 | Desktop entries, services, select menus, stow, traps, temp files, diff |
 | 10 | Terminal UI | 7 | Progress bars, animations, fzf integration, printf formatting, tput |
-| 11 | Algorithms & Data | 4 | ROT13, fake data, linear search, random data generation |
+| 11 | Algorithms & Data | 7 | ROT13, fake data, linear search, random data, bubble sort, binary search, word frequency |
 
 ## Running a Script
 
