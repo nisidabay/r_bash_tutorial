@@ -44,6 +44,29 @@ while IFS= read -r line; do
 done < "$input"
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a script that reads a list of URLs from a file (or stdin), uses `curl` to fetch each one, logs both stdout and stderr to separate files with `tee`, and reports the exit status of each download.
+---
+
+#### Desafío 1A — Basado en `04_pipes.sh`
+
+Tomá el script `04_pipes.sh` y modificálo para que:
+
+1. En lugar de los comandos fijos, leé una lista de palabras desde un archivo (usando `mapfile` como viste en el grupo 04).
+2. Pasá cada palabra por un pipeline: `echo "$palabra" | rev | tr 'a-z' 'A-Z'` para invertirla y ponerla en mayúsculas.
+3. Usá `PIPESTATUS` para verificar que cada etapa del pipeline funcionó, y mostrá un error si alguna falló.
+
+💡 Pista: arrancá con `mapfile -t words < palabras.txt` (creá el archivo primero). Después, para cada word: `result=$(echo "$word" | rev | tr 'a-z' 'A-Z')` y chequeá `echo "${PIPESTATUS[@]}"` después del pipeline. Si algún valor no es 0, reportá el error.
+
+---
+
+#### Desafío 2B — Basado en `01_read_input.sh`, `02_write_output.sh`, y `06_dev_stdin.sh`
+
+Basado en lo que viste en `01_read_input.sh` y `06_dev_stdin.sh`, creá un script que:
+
+1. Acepte un archivo como argumento O lea de stdin (patrón `${1:-/dev/stdin}` de `06_dev_stdin.sh`).
+2. Use `read -p` para preguntar al usuario un prefijo de línea.
+3. Lea cada línea de la entrada y la escriba en un archivo de salida (`salida_$(date +%s).txt`) con el prefijo agregado al inicio, usando `>>` para append.
+4. Informe cuántas líneas procesó.
+
+💡 Pista: copiá la estructura de `06_dev_stdin.sh` — usá `local input="${1:-/dev/stdin}"`. Después de leer el prefijo con `read -p "Prefijo: " prefijo`, usá `while IFS= read -r line; do echo "$prefijo$line" >> "$outfile"; done < "$input"`. Contá con un contador `((count++))`.

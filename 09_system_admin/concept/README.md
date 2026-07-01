@@ -66,6 +66,28 @@ notify-send -u critical "Title" "Message"
 systemctl --user stop pipewire
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a system maintenance script with an interactive `select` menu that offers: checking disk usage, listing large files, and updating packages. Use `nullglob` to safely scan `~/Downloads` for temp files, and offer to clean them with a `diff`-style review before deletion.
+---
+
+#### Desafío 1A — Basado en `03_select_menu.sh`
+
+Tomá el script `03_select_menu.sh` y modificálo para que:
+
+1. En lugar de las opciones existentes, creá un menú de herramientas de red: "Ping a servidor", "Escaneo de puertos (local)", "Mostrar IP pública", "Traceroute", "Salir".
+2. Para "Ping a servidor", pedí al usuario una dirección adicional con `read -p` antes de ejecutar.
+3. Agregá una verificación al inicio que compruebe si los comandos necesarios existen (`command -v ping`, etc.), y si falta alguno, mostrá una advertencia pero permití continuar.
+
+💡 Pista: copiá la estructura del `select` loop de `03_select_menu.sh`. Reemplazá `MENU_OPTIONS` con las nuevas opciones. Para el ping: dentro del case, `read -p "Servidor: " server; ping -c 3 "$server"`. Para verificar comandos: `for cmd in ping nc curl traceroute; do command -v "$cmd" &>/dev/null || echo "Falta: $cmd"; done`.
+
+---
+
+#### Desafío 2B — Basado en `04_safe_update.sh`, `08_nullglob_safety.sh`, `09_find_null_safe.sh`
+
+Basado en lo que viste en `08_nullglob_safety.sh`, `04_safe_update.sh`, y `09_find_null_safe.sh`, creá un script que:
+
+1. Escanee un directorio dado como argumento buscando archivos `.tmp` de más de 1 MB (usá nullglob o find -print0 de `08_nullglob_safety.sh`/`09_find_null_safe.sh`).
+2. Muestre un diff del tamaño actual vs el tamaño que se liberaría (usando el patrón de `04_safe_update.sh`).
+3. Pida confirmación antes de eliminar, y si se confirma, elimine los archivos y muestre un resumen.
+
+💡 Pista: arrancá copiando `08_nullglob_safety.sh` como base. Usá `shopt -s nullglob; files=("$dir"/*.tmp); shopt -u nullglob`. Para cada archivo, calculá `size=$(stat -c%s "$file")` y si `(( size > 1048576 ))`, agregalo a `to_delete`. Mostrá los archivos encontrados y preguntá "¿Eliminar estos N archivos? (y/n)".

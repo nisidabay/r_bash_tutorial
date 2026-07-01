@@ -41,6 +41,29 @@ filename="data.tar.gz"
 basename="${filename%%.*}"   # → "data"
 ```
 
-## Now Build Your Own
+## Basado en lo aprendido hasta ahora, creá un script que...
 
-Write a script that reads a CSV file into an array with `mapfile`, then uses parameter expansion to strip quotes from each field, and prints the result as a formatted table.
+---
+
+#### Desafío 1B — Basado en `01_indexed_arrays.sh`, `04_mapfile.sh`, `05_parameter_expansion.sh`, y `06_here_docs.sh`
+
+Basado en lo que viste en `01_indexed_arrays.sh`, `04_mapfile.sh`, y `05_parameter_expansion.sh`, creá un script que:
+
+1. Use un here-doc (como en `06_here_docs.sh`) para definir datos de ejemplo con formato clave=valor, una por línea.
+2. Lea esos datos en un array con `mapfile`.
+3. Procese cada línea con parameter expansion para separar clave y valor (`${line%%=*}` y `${line#*=}`).
+4. Almacene los pares en un array asociativo (`declare -A`) y luego los imprima como una tabla formateada.
+
+💡 Pista: arrancá copiando `04_mapfile.sh` y reemplazá el contenido del tmpfile por un here-doc inline. Usá `mapfile -t lines << 'EOF'...EOF`. Después, para cada línea: `key="${line%%=*}"` y `val="${line#*=}"`. Creá `declare -A config` y asigná `config["$key"]="$val"`.
+
+---
+
+#### Desafío 2A — Basado en `02_associative_arrays.sh`
+
+Tomá el script `02_associative_arrays.sh` y modificálo para que:
+
+1. En lugar de las frutas/precios fijos, lea entrada del usuario con `read -p` para agregar productos al carrito (nombre del producto y precio).
+2. El usuario puede seguir agregando hasta que escriba "listo".
+3. Al final, use `${!map[@]}` para iterar las claves y mostrar el ticket con el total calculado con `(( total += map[$item] ))`.
+
+💡 Pista: reemplazá la declaración fija del array por un loop `while true; do read -p "Producto: " prod; [[ "$prod" == "listo" ]] && break; read -p "Precio: " precio; carrito["$prod"]=$precio; done`. Al final, iterá con `for item in "${!carrito[@]}"; do`.

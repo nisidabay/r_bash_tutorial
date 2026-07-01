@@ -79,6 +79,40 @@ case "$mime" in
 esac
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a script that monitors a directory for new `.log` files and displays a live-updating table of file sizes (formatted with `printf`), a spinner while scanning, and a progress bar during batch processing. Use `tput` for cursor positioning and `\r` for in-place updates.
+---
+
+#### Desafío 1A — Basado en `02_printf_progress.sh`
+
+Tomá el script `02_printf_progress.sh` y modificálo para que:
+
+1. En lugar de un loop fijo de 0 a 100, simulá la descarga de 5 archivos, donde cada archivo tiene un tamaño aleatorio entre 10 y 100 "unidades".
+2. Mostrá una barra de progreso para cada archivo individual, y al final una barra de progreso general que sume todos los avances.
+3. Usá `sleep 0.2` entre unidades para simular la descarga.
+
+💡 Pista: creá un array `archivos=(doc1.zip doc2.zip doc3.zip doc4.zip doc5.zip)` y un array de tamaños `tamaños=(40 75 20 90 55)`. Usá un loop anidado: `for i in "${!archivos[@]}"; do ... for ((p=0; p<=tamaños[i]; p++)); do draw_progress_bar "$p" "${tamaños[i]}"; sleep 0.05; done; done`. Al final, una barra general con el total acumulado.
+
+---
+
+#### Desafío 2A — Basado en `06_mpv_spinner.sh`
+
+Tomá el script `06_mpv_spinner.sh` y modificálo para que:
+
+1. En lugar de esperar a mpv, simulá una tarea de larga duración (por ejemplo, `sleep 8` mientras contás del 1 al 8 en un archivo temporal).
+2. El spinner debe cambiar de mensaje en el segundo 4: de "Cargando..." a "Casi listo...".
+3. Timeout ajustado a 10 segundos.
+
+💡 Pista: reemplazá `setsid -f mpv ...` por `(for i in {1..8}; do echo "Paso $i"; sleep 1; done) > "$temp_log" 2>&1 &`. En el loop de monitoreo, agregá un contador y si `((timeout_original - timeout > 40))` (pasaron ~4 segundos), mostrá "Casi listo..." en lugar de "Cargando...".
+
+---
+
+#### Desafío 3A — Basado en `03_formatted_table.sh`
+
+Tomá el script `03_formatted_table.sh` y modificálo para que:
+
+1. En lugar de una tabla de multiplicar, mostrá una tabla de conversión de pulgadas a centímetros (del 1 al 20).
+2. Mostrá el resultado en centímetros enteros (redondeo simple: `cm=$((i * 254 / 100))`).
+3. Aceptá un argumento opcional que indique el máximo de la tabla (default 12).
+
+💡 Pista: cambiá el loop anidado por uno simple `for ((i=1; i<=max; i++))`. Calculá `cm=$((i * 254 / 100))`. Usá `printf "│ %-2d pulg │ %3d cm │\n" "$i" "$cm"` para las columnas. La variable `max` la tomás de `${1:-12}`.

@@ -69,6 +69,40 @@ log_operation() {
 } >> "$LOG_FILE" 2>&1
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a script that reads from two files simultaneously (one per FD), merges their lines alternatingly, logs progress to a third FD (a log file), and displays a status message both on screen and in the log. Add a 5-second timeout for slow input.
+---
+
+#### Desafío 1A — Basado en `03_fd_compare.sh`
+
+Tomá el script `03_fd_compare.sh` y modificálo para que:
+
+1. En lugar de comparar archivos temporales, tomá dos archivos como argumentos del script (`$1` y `$2`).
+2. Si no se pasan dos argumentos, mostrá un mensaje de uso y salí con código 1.
+3. Agregá un contador de diferencias: al final, reportá "X líneas diferentes encontradas".
+
+💡 Pista: reemplazá la creación de archivos temporales (líneas 46-58) por `file_1="$1"` y `file_2="$2"`. Agregá `[[ $# -eq 2 ]] || { echo "Uso: ..."; exit 1; }`. En el loop de comparación, agregá `((diff_count++))` cuando las líneas difieran.
+
+---
+
+#### Desafío 2A — Basado en `05_fd_logging.sh` y `06_fd_dual_output.sh`
+
+Tomá el script `05_fd_logging.sh` y modificálo para que:
+
+1. En lugar de solo loggear a un archivo por FD, usá el patrón de `06_fd_dual_output.sh` para que los mensajes vayan también a la consola.
+2. Agregá un nivel de log: `log_info()`, `log_warn()`, `log_error()` — cada uno con un prefijo diferente (`[INFO]`, `[WARN]`, `[ERROR]`).
+3. El `log_error()` debe escribir a stderr además del log y la consola.
+
+💡 Pista: copiá la función `log_message` de `06_fd_dual_output.sh` (línea 45-51) que usa `tee -a /dev/fd/3`. Creá tres wrappers: `log_info() { log_message "[INFO] $*"; }`, `log_warn() { log_message "[WARN] $*"; }`, y `log_error() { log_message "[ERROR] $*" >&2; }`.
+
+---
+
+#### Desafío 3A — Basado en `07_fd_timeout.sh`
+
+Tomá el script `07_fd_timeout.sh` y modificálo para que:
+
+1. En lugar de leer de un archivo fijo, leé de un proceso en background que genere una línea cada N segundos (por ejemplo, `(for i in {1..5}; do echo "línea $i"; sleep $((RANDOM % 4 + 1)); done)`).
+2. Usá `exec 3< <(...)` con ese proceso como fuente.
+3. Si el `read -t` expira (el proceso tarda más de 3 segundos), mostrá un mensaje "Timeout — línea lenta" y continuá con la siguiente.
+
+💡 Pista: reemplazá el `cat` de la línea 43-48 por un proceso en background: `exec 3< <(for i in {1..5}; do echo "línea $i"; sleep $((RANDOM % 4 + 1)); done)`. En el while, usá `if read -r -t 3 line <&3; then echo "Leído: $line"; else echo "Timeout"; fi`.

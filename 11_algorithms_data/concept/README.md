@@ -59,6 +59,41 @@ mapfile -t data < <(
 )
 ```
 
-## Now Build Your Own
+## Basado en lo aprendido hasta ahora, creá un script que...
 
-Write a script that generates 20 fake user records (name, age, email), stores them in an array, then lets the user search by name using linear search. Display results in a formatted table. Add an option to output the data as fake CSV with ROT13-encoded email addresses.
+---
+
+#### Desafío 1B — Basado en `01_rot13.sh`, `02_fake_data.sh`, y `03_linear_search.sh`
+
+Basado en lo que viste en `02_fake_data.sh`, `03_linear_search.sh`, y `01_rot13.sh`, creá un script que:
+
+1. Genere 15 registros de usuarios falsos (nombre, edad, email) usando el patrón de `02_fake_data.sh`.
+2. Almacene los registros en un array indexado y también en un array asociativo clave=email.
+3. Implementá una función `buscar_por_email()` que use linear search (como en `03_linear_search.sh`) sobre el array indexado para encontrar un usuario por email.
+4. Agregá una opción para codificar los emails con ROT13 (usando `tr 'A-Za-z' 'N-ZA-Mn-za-m'` como en `01_rot13.sh`) antes de mostrar.
+
+💡 Pista: arrancá copiando `02_fake_data.sh` y modificá `generate_fake_user()` para que también devuelva email. Usá `mapfile -t usuarios < <(for ...)`. Para la búsqueda, copiá la función `linear_search()` de `03_linear_search.sh` pero comparando el campo email. Para ROT13: `echo "$email" | tr 'A-Za-z' 'N-ZA-Mn-za-m'`.
+
+---
+
+#### Desafío 2A — Basado en `04_random_data.sh`
+
+Tomá el script `04_random_data.sh` y modificálo para que:
+
+1. Agregá una función `generar_matricula()` que genere una matrícula estilo "ABC-1234" (3 letras mayúsculas, guión, 4 dígitos).
+2. Agregá una función `generar_telefono()` que genere un número tipo "+54 9 11 XXXX-XXXX" con los últimos 8 dígitos aleatorios.
+3. Agregá un menú (usando el `select` que ya tiene el script al final) que permita elegir qué tipo de dato generar, y genere 10 ejemplos de una vez.
+
+💡 Pista: para la matrícula: `letras=$(LC_ALL=C tr -dc 'A-Z' </dev/urandom | head -c 3); numeros=$(printf "%04d" $((RANDOM % 10000))); echo "${letras}-${numeros}"`. Para el teléfono: `num=$(printf "%04d" $((RANDOM % 10000))); echo "+54 9 11 1234-${num}"`. Agregá estas funciones al array `functions` del menú (línea 126-137).
+
+---
+
+#### Desafío 3A — Basado en `01_rot13.sh`
+
+Tomá el script `01_rot13.sh` y modificálo para que:
+
+1. En lugar de solo ROT13, ofrecé tres modos con `-e` (ROT13 encode), `-d` (ROT13 decode = mismo comando), y `-r` (ROT47 — similar pero para ASCII imprimible: `tr '!-~' 'P-~!-O'`).
+2. Agregá validación de que el archivo de entrada no esté vacío (`[[ -s "$input_file" ]]`).
+3. Si se pasa `-r` modo ROT47, usá el comando `tr` correspondiente.
+
+💡 Pista: agregá `-r` al case de validación del modo. Definí una variable `tr_cmd` que contenga `'A-Za-z' 'N-ZA-Mn-za-m'` para rot13 y `'!-~' 'P-~!-O'` para rot47. Usá `echo "$tr_cmd"` en la función `perform_rot13` en lugar de los valores fijos. Agregá `[[ -s "$input_file" ]] || { echo "Error: archivo vacío"; exit 1; }` antes de procesar.

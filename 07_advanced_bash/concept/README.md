@@ -71,6 +71,40 @@ while IFS= read -r line; do
 done <"$config_file"
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a script that accepts `--count N` and `--name NAME` as long options, sets default values with a config file parser, logs progress with timestamps, and uses a nameref to track how many items were processed. Use `01_templates.sh` as your starting boilerplate.
+---
+
+#### Desafío 1A — Basado en `11_getopts_standard.sh`
+
+Tomá el script `11_getopts_standard.sh` y modificálo para que:
+
+1. Agregá una opción `-o` que reciba un directorio de salida (`-o DIR`) y cree el directorio si no existe (`mkdir -p`).
+2. Agregá una opción `-q` que active modo silencioso (suprima los mensajes de "Processing...").
+3. Validá que si se pasa `-o`, el directorio sea escribible (`[[ -w "$dir" ]]`).
+
+💡 Pista: modificá el optstring de la línea 52 de `:vf:n:h` a `:vf:n:o:qh`. Agregá `o)` y `q)` en el case. Para `o)`: `output_dir="$OPTARG"; mkdir -p "$output_dir"`. Para `q)`: `quiet=true`. Al final, usá `if [[ "$quiet" != true ]]; then echo "..."; fi`.
+
+---
+
+#### Desafío 2A — Basado en `02_case_flowing.sh`
+
+Tomá el script `02_case_flowing.sh` y modificálo para que:
+
+1. En lugar de analizar "iced_latte", analizá el primer argumento del script (`$1`).
+2. Agregá más categorías: si contiene "sugar", "milk", "espresso", "decaf" — cada una debe aplicar `;&` o `;&&` apropiadamente para que una bebida como "decaf_soy_latte" active todos los flags correspondientes.
+3. Al final, mostrá un resumen: "Es: caliente/frío, Con leche: sí/no, Cafeína: sí/no".
+
+💡 Pista: usá `;&` para propiedades que siempre aplican (como "es una bebida") y `;&&` para seguir evaluando más patrones. Por ejemplo: `*decaf*) decaf=true ;;&` y `*milk*) milk=true ;;&`. Al final, un `echo` condicional muestra el resumen según los flags.
+
+---
+
+#### Desafío 3A — Basado en `05_nameref_increment.sh`
+
+Tomá el script `05_nameref_increment.sh` y modificálo para que:
+
+1. Agregá una función `append_to_array()` que reciba el nombre de un array (como nameref) y un elemento, y agregue ese elemento al array con `arr+=( "$elem" )`.
+2. Agregá otra función `array_length()` que reciba un array por nameref y devuelva (en `$?`) 0 si tiene más de 3 elementos, 1 si tiene 3 o menos.
+3. En `main()`, usá ambas funciones para agregar elementos a un array hasta que tenga 5 elementos, mostrando la longitud después de cada inserción.
+
+💡 Pista: `append_to_array() { local -n arr="$1"; local elem="$2"; arr+=( "$elem" ); }`. Para `array_length()`, usá `local -n arr="$1"; ((${#arr[@]} > 3))`. Llamalo con `if array_length mi_array; then ...`.

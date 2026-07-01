@@ -46,6 +46,29 @@ pid=$!
 wait "$pid"
 ```
 
-## Now Build Your Own
+## Basado en lo aprendido hasta ahora, creá un script que...
 
-Write a script that launches 5 background jobs (e.g., `sleep` with different durations), captures their PIDs, uses `wait -n` to report each completion as it happens, and cleans up any temp files with a `trap` on `EXIT`.
+---
+
+#### Desafío 1B — Basado en `03_background_jobs.sh`, `04_wait.sh`, `05_trap_basics.sh`, y `06_mktemp.sh`
+
+Basado en lo que viste en `03_background_jobs.sh`, `04_wait.sh`, y `06_mktemp.sh`, creá un script que:
+
+1. Cree un directorio temporal con `mktemp -d` (como en `06_mktemp.sh`).
+2. Lance 3 procesos en background que escriban un archivo cada uno dentro de ese directorio temporal, cada uno con una demora diferente (simulada con `sleep`).
+3. Capture los PIDs con `$!` y espere a que terminen con `wait $pid` (como en `03_background_jobs.sh` y `04_wait.sh`).
+4. Use `trap` en EXIT para limpiar el directorio temporal automáticamente.
+
+💡 Pista: copiá el patrón de `06_mktemp.sh` para el `TMPDIR`, `trap cleanup EXIT` y `cleanup()`. Después, para cada job: `(sleep $((RANDOM % 5)); echo "dato" > "$TMPDIR/archivo_$i.txt") &` con `pids+=($!)`. Al final, `for pid in "${pids[@]}"; do wait "$pid"; done`.
+
+---
+
+#### Desafío 2A — Basado en `01_command_substitution.sh`
+
+Tomá el script `01_command_substitution.sh` y modificálo para que:
+
+1. En lugar de mostrar solo la fecha y usuarios, mostrá también: cantidad de procesos del sistema (`ps -e | wc -l`), uso de memoria libre (`free -m | awk 'NR==2{print $7}'`), y el hostname en mayúsculas.
+2. Cada valor debe capturarse con `$(...)` y almacenarse en variables separadas.
+3. Mostrá todo como un reporte formateado con `printf`.
+
+💡 Pista: agregá líneas como `procesos=$(ps -e --no-headers | wc -l)` y `mem_libre=$(free -m | awk 'NR==2{print $7}')`. Después usá `printf` como en `05_echo_printf.sh` para mostrar: "Procesos: %d | Memoria libre: %d MB".

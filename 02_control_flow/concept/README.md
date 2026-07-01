@@ -57,6 +57,40 @@ for outer in a b c; do
 done
 ```
 
-## Now Build Your Own
+## Basado en este ejemplo, modifica para conseguir...
 
-Write a script that iterates over all `.sh` files in a directory, checks if each is readable and executable, and prints a report. Use a `for` loop with file tests, an `if`/`elif` chain for the status message, and `break`/`continue` to skip non-files.
+---
+
+#### Desafío 1A — Basado en `01_if_test.sh`
+
+Tomá el script `01_if_test.sh` y modificálo para que:
+
+1. En lugar de tests fijos, pedí al usuario que ingrese un path (archivo o directorio) con `read -p`.
+2. Mostrá un reporte que indique: si existe (`-e`), si es archivo (`-f`) o directorio (`-d`), si es legible (`-r`), y si es ejecutable (`-x`).
+3. Usá `elif` para que el mensaje cambie según el tipo: "Es un directorio legible" vs "Es un script ejecutable" vs "No existe".
+
+💡 Pista: agregá `read -p "Path a verificar: " path` al inicio del `main()`. Después usá `if [[ -e "$path" ]]; then` con `[[ -f "$path" ]]` y `[[ -d "$path" ]]` dentro. Los tests de `-r` y `-x` van como condiciones adicionales.
+
+---
+
+#### Desafío 2A — Basado en `03_for_loop.sh` + `06_break_continue.sh`
+
+Tomá el script `03_for_loop.sh` y modificálo para que:
+
+1. Itere sobre todos los archivos `*.txt` del directorio actual.
+2. Saltee los que no sean archivos regulares con `continue`.
+3. Si encuentra un archivo de más de 1 KB, muestre su nombre y tamaño, y detenga el proceso con `break` (simulando que "encontró uno grande, no hace falta seguir").
+
+💡 Pista: arrancá con `for file in *.txt; do` y dentro usá `[[ -f "$file" ]] || continue`. Para el tamaño: `size=$(wc -c < "$file")` y `if (( size > 1024 )); then ...; break; fi`. El patrón `continue`/`break` lo viste en `06_break_continue.sh`.
+
+---
+
+#### Desafío 3A — Basado en `05_case_basic.sh`
+
+Tomá el script `05_case_basic.sh` y modificálo para que:
+
+1. En lugar del `weather` fijo, tomá el primer argumento del script como entrada (`$1`).
+2. Agregá más casos: `cloudy`, `windy`, `foggy`, cada uno con su recomendación.
+3. Usá el patrón `*)` como fallback para mostrar el uso del script si no se pasa argumento o si el clima es desconocido.
+
+💡 Pista: cambiá `weather="sunny"` por `local weather="${1:-}"`. Al inicio del `case`, agregá `""|*)` que muestre "Uso: $0 <clima>". Los casos nuevos van antes del `*)`.
