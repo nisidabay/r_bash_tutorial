@@ -19,9 +19,9 @@ Read the concept READMEs. Each group has challenges to practice what you learned
 Pick one that interests you and try it:
 
 ```bash
-cat 01_basics/concept/README.md           # Modifica un script de variables
-cat 05_file_io_basics/concept/README.md   # Escribe un log parser
-cat 10_terminal_ui/concept/README.md      # Crea una barra de progreso
+cat 01_basics/concept/README.md           
+cat 05_file_io_basics/concept/README.md  
+cat 10_terminal_ui/concept/README.md    
 ```
 
 ### Path B: Systematic (~several weeks)
