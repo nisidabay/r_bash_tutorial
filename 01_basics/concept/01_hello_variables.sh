@@ -4,6 +4,9 @@
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 IFS=$'\n\t'
+# Setting IFS to only newline and tab characters prevents unexpected word
+# splitting when variables contain spaces (like "San Miguel de Allende"). This is
+# a subtle but critical best practice that many beginners miss.
 
 # ── Hello, World! ────────────────────────────────────────────
 # echo prints its arguments to stdout followed by a newline
